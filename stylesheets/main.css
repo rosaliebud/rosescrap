@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #B6E5EC;
+}
+a{background:transparent;text-decoration:none;font-size:small}
+a:hover{text-decoration:underline}
+a:link{color:#7f7f7f}
+a:visited{color:#7f7f7f}
+h1{font-size:medium;color:#131313}
+h2{font-size:medium;display:block;color:deeppink}
+#tagline{font-size:small;font-style:italic;display:inline}
+#nav ul{margin:0;padding:10px 0}
+#nav li{display:inline;padding-left:1em}
+#nav{background:#262626;width:25em;text-align:center}
+
+.username{color:deeppink;margin:0 0 0 0}
+#footer{text-align:center;clear:both;font-size:small;color:#7f7f7f}
+#browse,#list{font-size:small}
+#browse{padding:5px;vertical-align:middle}
+#list th{padding:0 5px 0 0;vertical-align:top;text-align:right}
+#guestbook{background:#666666;font-size:small;width:30em}
+
+.buttons{float:right;font-size:small;margin:2px 0 0 0}
