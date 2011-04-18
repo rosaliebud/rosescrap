@@ -7,6 +7,7 @@ class Greeting(db.Model):
 
 class Crap(db.Model):
 	name = db.StringProperty()
+	photo = db.BlobProperty()
 	description = db.StringProperty(multiline=True)
 	date = db.DateTimeProperty(auto_now_add=True)
 	

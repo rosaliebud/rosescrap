@@ -1,13 +1,12 @@
 <!doctype>
 <html>
 <head>
-	<title>rose's crap'</title>
+	<title>rose's crap</title>
 	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 	<meta name="author" content="Rose Jen">
 </head>
 <body>
-	<h1>Welcome to Rose's Crap</h1>
-	<p id="tagline">"my crap could be treasure in your stash!"</p>
+	<h1>{ rose*s crap }</h1>
 	
 	<div id="nav">
 		<ul>
@@ -16,18 +15,36 @@
 			<li><a href="{{ url }}">{{ url_linktext }}</a></li>
 		</ul>
 	</div>
+
+	<div id="list">
+		<h2>List My Crap Too!</h2>
+		<form action="/list" enctype="multipart/form-data" method="post">
+			<table>
+	    	<tr><td class="affor">What are you listing?</td><td><input name="Crap_Name" size="40"></input></td></tr>
+			<tr><td class="affor">Add a photo</td><td><input type="file" name="Crap_Photo"></input></td></tr>
+			<tr><td class="affor">Short description</td><td><textarea name="Crap_Description" rows="4" cols="30"></textarea></td></tr>
+	    	<tr><td></td><td><input type="submit" value="List crap"></input></td></tr>
+			</table>
+	    </form>
+	</div>
+		
 	<div>
 		<h2>Browse Crap</h2>
-		<table id="browse">
+		<div id="browse">
+		
 			{% for crap in listings %}
-			<tr>
-				<th>{{crap.name}}</th>
-				<td></td>
-				<td>{{crap.description}}</td>
-			</tr>
+				<div class="item">
+					<table>
+						<tr><td class="title">{{crap.name}}</td></tr>
+						<tr><td>{% if crap.photo %}<img src="/thumb?id={{ crap.key.id }}" />{% endif %}</td></tr>
+						<tr><td class="desc">{{crap.description}}</td></tr>
+					</table>
+				</div>
 			{% endfor %}
-		</table>
+			<div class="clear"></div>
+		</div>
 	</div>
+	
 	<div id="search">
 		<h2>Looking for something in particular?</h2>
 		<form action="/search" method="post">
@@ -37,18 +54,10 @@
 			</div>
 	    </form>
 	</div>
-	<div>
-		<h2>List My Crap Too!</h2>
-		<form action="/list" method="post">
-			<table id="list">
-	    	<tr><th>What are you listing?</th><td><input name="Stuff_Name" size="50"></input></td></tr>
-			<tr><th>Add a photo</th><td><input type="file" value="Add Photo"></input></td></tr>
-			<tr><th>Short description</th><td><textarea name="Stuff_Description" rows="4" cols="35"></textarea></td></tr>
-			</table>
-	    	<div><input type="submit" value="List crap"></input></div>
-	    </form>
-	</div>
-    
+	
+
+
+<!--  
 	<div id="guestbook">
 		<h1>Comments:</h1>
 		{% for greeting in greetings %}
@@ -67,7 +76,7 @@
 	      <div><textarea name="content" rows="5" cols="30"></textarea></div>
 	      <div><input type="submit" value="Sign Guestbook"></div>
 	    </form></div>
-
+-->
 </body>
 <div id="footer">
 	(c) 2011 <a href="mailto:rose@rosescrap.com">Rose Jen</a>

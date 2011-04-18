@@ -5,6 +5,7 @@ from handler import *
 
 application = webapp.WSGIApplication([('/', MainPage),
 	                                  ('/sign', Guestbook),
+									('/thumb', Thumbnailer),
 									('/list', Listing)],
 	                                 debug=True)
 

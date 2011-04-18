@@ -1,8 +1,11 @@
 import os
+import logging
 
 from google.appengine.ext import webapp
 from google.appengine.api import users
 from google.appengine.ext.webapp import template
+from google.appengine.api import images
+from google.appengine.ext import db
 
 from model import *
 
@@ -11,12 +14,28 @@ class Listing(webapp.RequestHandler):
 	def post(self):
 		crap = Crap()
 		
-		crap.name = self.request.get('Stuff_Name')
-		uploaded_file = self.request.body
-		crap.description = self.request.get('Stuff_Description')
+		crap.name = self.request.get('Crap_Name')
+		crap.photo = db.Blob(self.request.get('Crap_Photo'))
+		crap.description = self.request.get('Crap_Description')
 		crap.put()
 		self.redirect('/')
-		
+
+class Thumbnailer(webapp.RequestHandler):
+    def get(self):
+        if self.request.get("id"):
+            crap = Crap.get_by_id(int(self.request.get("id")))
+
+            if crap and crap.photo:
+                img = images.Image(crap.photo)
+                img.resize(width=160, height=160)
+                img.im_feeling_lucky()
+                thumbnail = img.execute_transforms(output_encoding=images.JPEG)
+
+                self.response.headers['Content-Type'] = 'image/jpeg'
+                self.response.out.write(thumbnail)
+                return
+				
+		self.error(404)	
 	
 class MainPage(webapp.RequestHandler):
 	def get(self):
