@@ -12,12 +12,15 @@ h2{font-size:medium;display:block;color:deeppink}
 #nav ul{margin:0;padding:10px 0}
 #nav li{display:inline;padding-left:1em}
 #nav{background:#262626;width:25em;text-align:center}
+h2,#nav {text-transform:uppercase}
 
 .username{color:deeppink;margin:0 0 0 0}
-#footer{text-align:center;clear:both;font-size:small;color:#7f7f7f}
-#browse,#list{font-size:small}
-#browse{padding:5px;vertical-align:middle}
+
+#browse{font-size:small;padding:5px;vertical-align:middle}
+#browse th,td{width:150px}
+#list{font-size:small}
 #list th{padding:0 5px 0 0;vertical-align:top;text-align:right}
 #guestbook{background:#666666;font-size:small;width:30em}
 
+#footer{text-align:center;clear:both;font-size:small;color:#7f7f7f}
 .buttons{float:right;font-size:small;margin:2px 0 0 0}
