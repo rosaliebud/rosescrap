@@ -1,52 +1,54 @@
 <!doctype>
 <html>
 <head>
-	<title>rose's crap</title>
+	<title>rose*s*crap</title>
 	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 	<meta name="author" content="Rose Jen">
 </head>
 <body>
-	<h1>{ rose*s crap }</h1>
+	<h1>{ rose*s*crap }</h1>
+	<div id="tagline">A place for your s*crap to become someone else*s treasure.</div>
 	
 	<div id="nav">
 		<ul>
 			<li><a href="/">Home</a></li>
+			<li><a href="/browse/">Browse</a></li>
+			<li><a href="/list/">List</a></li>
 			<li><a href="/about/">About</a></li>
 			<li><a href="{{ url }}">{{ url_linktext }}</a></li>
 		</ul>
 	</div>
 
 	<div id="list">
-		<h2>List My Crap Too!</h2>
+		<h2>List My S*crap Too and Get Karma!</h2>
 		<form action="/list" enctype="multipart/form-data" method="post">
 			<table>
-	    	<tr><td class="affor">What are you listing?</td><td><input name="Crap_Name" size="40"></input></td></tr>
-			<tr><td class="affor">Add a photo</td><td><input type="file" name="Crap_Photo"></input></td></tr>
-			<tr><td class="affor">Short description</td><td><textarea name="Crap_Description" rows="4" cols="30"></textarea></td></tr>
-	    	<tr><td></td><td><input type="submit" value="List crap"></input></td></tr>
+	    	<tr><td class="affor">What are you listing?</td><td><input name="Scrap_Name" size="40"></input></td></tr>
+			<tr><td class="affor">Add a photo</td><td><input type="file" name="Scrap_Photo"></input></td></tr>
+			<tr><td class="affor">Short description</td><td><textarea name="Scrap_Description" rows="4" cols="30"></textarea></td></tr>
+	    	<tr><td></td><td><input type="submit" value="List s*crap"></input></td></tr>
 			</table>
 	    </form>
 	</div>
 		
 	<div>
-		<h2>Browse Crap</h2>
-		<div id="browse">
-		
-			{% for crap in listings %}
-				<div class="item">
-					<table>
-						<tr><td class="title">{{crap.name}}</td></tr>
-						<tr><td>{% if crap.photo %}<img src="/thumb?id={{ crap.key.id }}" />{% endif %}</td></tr>
-						<tr><td class="desc">{{crap.description}}</td></tr>
+		<h2>Browse S*crap</h2>
+		<table id="browse">
+		{% for scrap in listings %}
+			{% if forloop.counter0|divisibleby:3 %}<tr>{% endif %}
+				<td>
+					<table class="item">
+						<tr><td class="title">{{scrap.name}}</td></tr>
+						<tr><td>{% if scrap.photo %}<img src="/thumb?id={{ scrap.key.id }}" />{% endif %}</td></tr>
+						<tr><td class="desc">{{scrap.description}}</td></tr>
 					</table>
-				</div>
-			{% endfor %}
-			<div class="clear"></div>
-		</div>
+				</td>
+			{% if forloop.counter|divisibleby:3 %}</tr>{% endif %}
+		{% endfor %}
+		</table>
 	</div>
-	
 	<div id="search">
-		<h2>Looking for something in particular?</h2>
+		<h2>Looking for something S*crappy in particular?</h2>
 		<form action="/search" method="post">
 			<div>
 				<input name="Search_Input" size="50"></input>

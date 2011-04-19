@@ -12,21 +12,21 @@ from model import *
 
 class Listing(webapp.RequestHandler):
 	def post(self):
-		crap = Crap()
+		scrap = Scrap()
 		
-		crap.name = self.request.get('Crap_Name')
-		crap.photo = db.Blob(self.request.get('Crap_Photo'))
-		crap.description = self.request.get('Crap_Description')
-		crap.put()
+		scrap.name = self.request.get('Scrap_Name')
+		scrap.photo = db.Blob(self.request.get('Scrap_Photo'))
+		scrap.description = self.request.get('Scrap_Description')
+		scrap.put()
 		self.redirect('/')
 
 class Thumbnailer(webapp.RequestHandler):
     def get(self):
         if self.request.get("id"):
-            crap = Crap.get_by_id(int(self.request.get("id")))
+            scrap = Scrap.get_by_id(int(self.request.get("id")))
 
-            if crap and crap.photo:
-                img = images.Image(crap.photo)
+            if scrap and scrap.photo:
+                img = images.Image(scrap.photo)
                 img.resize(width=160, height=160)
                 img.im_feeling_lucky()
                 thumbnail = img.execute_transforms(output_encoding=images.JPEG)
@@ -37,12 +37,23 @@ class Thumbnailer(webapp.RequestHandler):
 				
 		self.error(404)	
 	
+class ScrapePage(webapp.RequestHandler):
+	def get(self):
+		scrappage = Scrap.all()
+		scrappage.filter('_id_=',self.request.get('id'))
+		
 class MainPage(webapp.RequestHandler):
 	def get(self):
 		greetings_query = Greeting.all().order('-date')
 		greetings = greetings_query.fetch(10)
 
-		listings = Crap.all().fetch(10)
+#grab 9 listings for the homepage
+		listings_query = Scrap.all().order('-date')
+		listings = listings_query.fetch(9)
+		#count = listings_query.cursor()
+		#listings2 = listings_query.with_cursor(count)
+		#listings3 = listings_query.with_cursor(1,3)
+		
 
 		if users.get_current_user():
 			url = users.create_logout_url(self.request.uri)
@@ -53,7 +64,11 @@ class MainPage(webapp.RequestHandler):
 
 		template_values = {
 			'greetings': greetings,
+			#for the listing
 			'listings': listings,
+			#'listings2': listings,
+			#'listings3': listings,
+			
 			'url': url,
 			'url_linktext': url_linktext,
 		}

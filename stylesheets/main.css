@@ -1,28 +1,28 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-image: -webkit-linear-gradient(#B6E5EC,#ffffff);
+  background: -webkit-linear-gradient(#B6E5EC,#ffffff);
+  background: -moz-linear-gradient(#B6E5EC,#ffffff);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B6E5EC', endColorstr='#ffffff');
 }
-a{background:transparent;text-decoration:none;font-size:small}
+a{background:transparent;text-decoration:none;}
 a:hover{text-decoration:underline}
 a:link{color:#999999}
 a:visited{color:#999999}
 
 h1{font-size:x-large;color:deeppink}
-h2{text-transform:uppercase;font-size:medium;color:deeppink}
+h2{text-transform:uppercase;font-size:medium;color:deeppink;}
 
-div.clear{clear:both}
-
-#tagline{font-size:x-small;font-style:italic;display:inline}
-#nav ul{margin:0;padding:5px 0}
-#nav li{display:inline;padding:0 100px}
-#nav{background:#262626;width:900px;text-align:center;text-transform:uppercase}
+#tagline{font-size:large;display:inline;color:#393939;font-weight:bold}
+#nav ul{margin:0;padding:10px 0;}
+#nav li{display:inline;padding:10px 50px}
+#nav{background:#262626;width:900px;text-align:center;text-transform:uppercase;font-weight:bold}
 
 .username{color:deeppink;margin:0 0 0 0}
 
 #browse td{vertical-align:top}
-#browse {width:650px}
-div.item {float:left;}
-.item table{padding:5px;width:170px}
+#browse {width:520px}
+
+.item {padding:5px;width:170px}
 .desc{font-size:x-small;color:#4c4c4c}
 .title{font-size:small;font-weight:bold;text-align:middle}
 
