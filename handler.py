@@ -37,10 +37,22 @@ class Thumbnailer(webapp.RequestHandler):
 				
 		self.error(404)	
 	
-class ScrapePage(webapp.RequestHandler):
+class FullImage(webapp.RequestHandler):
 	def get(self):
-		scrappage = Scrap.all()
-		scrappage.filter('_id_=',self.request.get('id'))
+		if self.request.get("id"):
+			scrap = Scrap.get_by_id(int(self.request.get("id")))
+		
+			if scrap and scrap.photo:
+				img = images.Image(scrap.photo)
+				img.resize(width=500, height=500)
+				img.im_feeling_lucky()
+				fullsize = img.execute_transforms(output_encoding=images.JPEG)
+		
+				self.response.headers['Content-Type'] = 'image/jpeg'
+		        self.response.out.write(fullsize)
+		        return
+		
+		self.error(404)
 		
 class MainPage(webapp.RequestHandler):
 	def get(self):
@@ -52,8 +64,6 @@ class MainPage(webapp.RequestHandler):
 		listings = listings_query.fetch(9)
 		#count = listings_query.cursor()
 		#listings2 = listings_query.with_cursor(count)
-		#listings3 = listings_query.with_cursor(1,3)
-		
 
 		if users.get_current_user():
 			url = users.create_logout_url(self.request.uri)
@@ -66,15 +76,24 @@ class MainPage(webapp.RequestHandler):
 			'greetings': greetings,
 			#for the listing
 			'listings': listings,
-			#'listings2': listings,
-			#'listings3': listings,
-			
 			'url': url,
 			'url_linktext': url_linktext,
 		}
 
 		path = os.path.join(os.path.dirname(__file__), 'index.html')
 		self.response.out.write(template.render(path, template_values))
+
+#grab details and full image for scrappage
+class ScrapPage (webapp.RequestHandler):
+	def get(self):
+
+		template_values = {
+			'scrapdetail': Scrap.get_by_id(int(self.request.get('id')))
+		}
+
+		path = os.path.join(os.path.dirname(__file__), 'scrap.html')
+		self.response.out.write(template.render(path, template_values))
+		
 
 class Guestbook(webapp.RequestHandler):
 	def post(self):

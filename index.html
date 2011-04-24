@@ -38,8 +38,14 @@
 			{% if forloop.counter0|divisibleby:3 %}<tr>{% endif %}
 				<td>
 					<table class="item">
-						<tr><td class="title">{{scrap.name}}</td></tr>
-						<tr><td>{% if scrap.photo %}<img src="/thumb?id={{ scrap.key.id }}" />{% endif %}</td></tr>
+						<tr><td class="title"><a href="/scrappage?id={{scrap.key.id}}">{{scrap.name}}</a></td></tr>
+						<tr><td>
+							{% if scrap.photo %}
+							<a href="/scrappage?id={{scrap.key.id}}">
+								<img src="/thumb?id={{ scrap.key.id }}" />
+							</a>
+							{% endif %}
+						</td></tr>
 						<tr><td class="desc">{{scrap.description}}</td></tr>
 					</table>
 				</td>

@@ -11,6 +11,7 @@ a:visited{color:#999999}
 
 h1{font-size:x-large;color:deeppink}
 h2{text-transform:uppercase;font-size:medium;color:deeppink;}
+h3{font-size:medium;}
 
 #tagline{font-size:large;display:inline;color:#393939;font-weight:bold}
 #nav ul{margin:0;padding:10px 0;}
@@ -24,7 +25,8 @@ h2{text-transform:uppercase;font-size:medium;color:deeppink;}
 
 .item {padding:5px;width:170px}
 .desc{font-size:x-small;color:#4c4c4c}
-.title{font-size:small;font-weight:bold;text-align:middle}
+.title {font-size:medium;font-weight:bold;}
+.title a{font-size:medium;font-weight:bold;color:#262626}
 
 .affor{text-align:right}
 #list{float:right}

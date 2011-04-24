@@ -4,9 +4,11 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from handler import *
 
 application = webapp.WSGIApplication([('/', MainPage),
-	                                  ('/sign', Guestbook),
+	                                ('/sign', Guestbook),
 									('/thumb', Thumbnailer),
-									('/list', Listing)],
+									('/list', Listing),
+									('/scrappage',ScrapPage),
+									('/image',FullImage)],
 	                                 debug=True)
 
 def main():
