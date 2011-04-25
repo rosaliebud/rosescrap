@@ -4,11 +4,9 @@ from google.appengine.ext.webapp import util
 import handler
 
 mappings = [('/', handler.Index),
-			('/image', handler.FullImage),
 			('/list', handler.Listing),
-			('/scrappage', handler.ScrapPage),
-			('/sign', handler.Guestbook),
-			('/thumb', handler.Thumbnailer)]
+			('/scrap/image/(.+)', handler.ScrapImage),
+			('/scrap/(.+)', handler.Scrap)]
 
 application = webapp.WSGIApplication(mappings, debug=True)
 

@@ -1,30 +1,13 @@
-<!doctype>
-<html>
-<head>
-	<title>rose*s*crap</title>
-	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-	<meta name="author" content="Rose Jen">
-</head>
-<body>
-	<h1>{ rose*s*crap }</h1>
-	<div id="tagline">A place for your s*crap to become someone else*s treasure.</div>
-	
-	<div id="nav">
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/browse/">Browse</a></li>
-			<li><a href="/list/">List</a></li>
-			<li><a href="/about/">About</a></li>
-			<li><a href="{{ url }}">{{ url_linktext }}</a></li>
-		</ul>
-	</div>
+{% extends 'base.html' %}
 
-		<h3 class="title">{{scrapdetail.name}}</h3>
-		<table class="item">
-			<tr><td>{% if scrapdetail.photo %}<img src="/image?id={{ scrapdetail.key.id }}" />{% endif %}</td></tr>
-			<tr><td class="desc">{{scrapdetail.description}}</td></tr>
-		</table>
-	</div>
-
-</body>
-</html>
+{% block content %}
+<div>
+    <h3 class="title">{{scrap.name}}</h3>
+    <table class="item">
+        {% if scrap.photo %}
+        <tr><td><img src="/scrap/image/{{ scrap.key().id() }}" /></td></tr>
+        {% endif %}
+        <tr><td class="desc">{{scrap.description}}</td></tr>
+    </table>
+</div>
+{% endblock %}

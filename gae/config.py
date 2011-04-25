@@ -1,0 +1,10 @@
+import os
+
+DEV = os.environ['SERVER_SOFTWARE'].startswith('Dev')
+
+FACEBOOK_APP_ID = ''
+FACEBOOK_APP_SECRET = ''
+
+if DEV:
+    FACEBOOK_APP_ID = '178254198890568'
+    FACEBOOK_APP_SECRET = 'dd7607d62e50c7fa02188c80f923eb8f'

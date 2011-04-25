@@ -1,92 +1,48 @@
-<!doctype>
-<html>
-<head>
-	<title>rose*s*crap</title>
-	<link type="text/css" rel="stylesheet" href="/static/css/main.css" />
-	<meta name="author" content="Rose Jen">
-</head>
-<body>
-	<h1>{ rose*s*crap }</h1>
-	<div id="tagline">A place for your s*crap to become someone else*s treasure.</div>
-	
-	<div id="nav">
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/browse/">Browse</a></li>
-			<li><a href="/list/">List</a></li>
-			<li><a href="/about/">About</a></li>
-			<li><a href="{{ url }}">{{ url_linktext }}</a></li>
-		</ul>
-	</div>
+{% extends 'base.html' %}
 
-	<div id="list">
-		<h2>List My S*crap Too and Get Karma!</h2>
-		<form action="/list" enctype="multipart/form-data" method="post">
-			<table>
-	    	<tr><td class="affor">What are you listing?</td><td><input name="Scrap_Name" size="40"></input></td></tr>
-			<tr><td class="affor">Add a photo</td><td><input type="file" name="Scrap_Photo"></input></td></tr>
-			<tr><td class="affor">Short description</td><td><textarea name="Scrap_Description" rows="4" cols="30"></textarea></td></tr>
-	    	<tr><td></td><td><input type="submit" value="List s*crap"></input></td></tr>
-			</table>
-	    </form>
-	</div>
-		
-	<div>
-		<h2>Browse S*crap</h2>
-		<table id="browse">
-		{% for scrap in listings %}
-			{% if loop.index0 % 3 == 0 %}<tr>{% endif %}
-				<td>
-					<table class="item">
-						<tr><td class="title"><a href="/scrappage?id={{scrap.key.id}}">{{scrap.name}}</a></td></tr>
-						<tr><td>
-							{% if scrap.photo %}
-							<a href="/scrappage?id={{scrap.key.id}}">
-								<img src="/thumb?id={{ scrap.key.id }}" />
-							</a>
-							{% endif %}
-						</td></tr>
-						<tr><td class="desc">{{scrap.description}}</td></tr>
-					</table>
-				</td>
-			{% if loop.index0 % 3 == 0 %}</tr>{% endif %}
-		{% endfor %}
-		</table>
-	</div>
-	<div id="search">
-		<h2>Looking for something S*crappy in particular?</h2>
-		<form action="/search" method="post">
-			<div>
-				<input name="Search_Input" size="50"></input>
-				<input type="submit" value="Search"></input>
-			</div>
-	    </form>
-	</div>
-	
-
-
-<!--  
-	<div id="guestbook">
-		<h1>Comments:</h1>
-		{% for greeting in greetings %}
-	    	<blockquote>
-			{% if greeting.author %}
-	        	<strong class="username">{{ greeting.author.nickname }}</strong> wrote:
-	      	{% else %}
-	        	An anonymous person wrote:
-	      	{% endif %}
-	    	<br>{{ greeting.content|escape }}
-			</blockquote>
-	    {% endfor %}
-
-		<h1>Add a comment:</h1>
-		<form action="/sign" method="post">
-	      <div><textarea name="content" rows="5" cols="30"></textarea></div>
-	      <div><input type="submit" value="Sign Guestbook"></div>
-	    </form></div>
--->
-</body>
-<div id="footer">
-	(c) 2011 <a href="mailto:rose@rosescrap.com">Rose Jen</a>
+{% block content %}
+<div id="list">
+    <h2>List My S*crap Too and Get Karma!</h2>
+    <form action="/list" enctype="multipart/form-data" method="post">
+        <table>
+        <tr><td class="affor">What are you listing?</td><td><input name="Scrap_Name" size="40"></input></td></tr>
+        <tr><td class="affor">Add a photo</td><td><input type="file" name="Scrap_Photo"></input></td></tr>
+        <tr><td class="affor">Short description</td><td><textarea name="Scrap_Description" rows="4" cols="30"></textarea></td></tr>
+        <tr><td></td><td><input type="submit" value="List s*crap"></input></td></tr>
+        </table>
+    </form>
 </div>
-</html>
+    
+<div>
+    <h2>Browse S*crap</h2>
+    <table id="browse">
+    {% for scrap in listings %}
+        {% if loop.index0 % 3 == 0 %}<tr>{% endif %}
+            <td>
+                <table class="item">
+                    <tr><td class="title"><a href="/scrap/{{scrap.key().id()}}">{{scrap.name}}</a></td></tr>
+                    <tr><td>
+                        {% if scrap.photo %}
+                        <a href="/scrap/{{scrap.key().id()}}">
+                            <img src="/scrap/image/{{ scrap.key().id() }}?w=160" />
+                        </a>
+                        {% endif %}
+                    </td></tr>
+                    <tr><td class="desc">{{scrap.description}}</td></tr>
+                </table>
+            </td>
+        {% if loop.index0 % 3 == 0 %}</tr>{% endif %}
+    {% endfor %}
+    </table>
+</div>
+<div id="search">
+    <h2>Looking for something S*crappy in particular?</h2>
+    <form action="/search" method="post">
+        <div>
+            <input name="Search_Input" size="50"></input>
+            <input type="submit" value="Search"></input>
+        </div>
+    </form>
+</div>
+    
+{% endblock %}
