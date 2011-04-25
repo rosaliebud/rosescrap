@@ -1,0 +1,6 @@
+[submodule "third_party/facebook"]
+	path = third_party/facebook
+	url = git@github.com:facebook/python-sdk
+[submodule "third_party/jinja2"]
+	path = third_party/jinja2
+	url = git@github.com:mitsuhiko/jinja2
