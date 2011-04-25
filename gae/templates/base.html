@@ -8,7 +8,16 @@
 <body>
     <h1>{ rose*s*crap }</h1>
     <div id="tagline">A place for your s*crap to become someone else*s treasure.</div>
-    
+
+    <div id="logged-in" class="auth">
+        <fb:profile-pic id="fb-profile-pic" facebook-logo="true"></fb:profile-pic>
+        <fb:name id="fb-name" useyou="false" ></fb:name>
+        <a onclick="FB.logout(); return false;">logout</a>
+    </div>
+    <div id="logged-out" class="auth">
+        <fb:login-button perms="email"></fb:login-button>
+    </div>
+
     <div id="nav">
         <ul>
             <li><a href="/">Home</a></li>
@@ -22,7 +31,25 @@
     {% endblock %}
 
     <div id="footer">
-        (c) 2011 <a href="mailto:rose@rosescrap.com">Rose Jen</a>
+        &copy; 2011 <a href="mailto:rose@rosescrap.com">Rose Jen</a>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script>
+      FB.init({
+        appId  : '{{ fb_app_id }}',
+        status : true,
+        cookie : true
+      });
+    </script>
+
+    <script src="/static/js/auth.js"></script>
+
+    {% block footer_js %}
+    {% endblock %}
+
 </body>
 </html>

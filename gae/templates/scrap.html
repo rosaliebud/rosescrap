@@ -5,7 +5,7 @@
     <h3 class="title">{{scrap.name}}</h3>
     <table class="item">
         {% if scrap.photo %}
-        <tr><td><img src="/scrap/image/{{ scrap.key().id() }}" /></td></tr>
+        <tr><td><img src="/scrap/image/{{ scrap.key().id() }}?w=800" /></td></tr>
         {% endif %}
         <tr><td class="desc">{{scrap.description}}</td></tr>
     </table>

@@ -3,7 +3,7 @@
 {% block content %}
 <div id="list">
     <h2>List My S*crap Too and Get Karma!</h2>
-    <form action="/list" enctype="multipart/form-data" method="post">
+    <form id="list" action="/list" enctype="multipart/form-data" method="post">
         <table>
         <tr><td class="affor">What are you listing?</td><td><input name="Scrap_Name" size="40"></input></td></tr>
         <tr><td class="affor">Add a photo</td><td><input type="file" name="Scrap_Photo"></input></td></tr>
@@ -31,7 +31,7 @@
                     <tr><td class="desc">{{scrap.description}}</td></tr>
                 </table>
             </td>
-        {% if loop.index0 % 3 == 0 %}</tr>{% endif %}
+        {% if loop.index % 3 == 0 %}</tr>{% endif %}
     {% endfor %}
     </table>
 </div>
@@ -45,4 +45,8 @@
     </form>
 </div>
     
+{% endblock %}
+
+{% block footer_js %}
+<script src="/static/js/index.js"></script>
 {% endblock %}
